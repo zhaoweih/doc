@@ -15,19 +15,25 @@ includes:
 search: true
 ---
 
-# Introduction
+# Introduction 介绍
 
 Welcome to the Avgle API! You can use our API to access information like videos and categories in our database.
 
+欢迎来到知名网站Avgle的API！你能使用我们的API去访问我们数据库诸如视频和类别的信息。
+
 We have language bindings in Javascript, PHP, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-# Authentication
+我们有语言绑定JS，PHP和Python！你可以在右边黑的地方查看我们的代码例子，同时你也可以在右上角切换编程语言。
+
+# Authentication 授权
 
 Avgle API v1 is public and free to use. Neither authentication nor API keys is needed.
 
-# Video categories
+AvgleAPI v1 是公开而且免费使用的。不需要任何授权或者API钥匙。
 
-## Get all video categories
+# Video categories 视频类别
+
+## Get all video categories 获取所有视频类别
 
 ```php
 $AVGLE_CATEGORIES_API_URL = 'https://api.avgle.com/v1/categories';
@@ -75,7 +81,7 @@ $.getJSON(AVGLE_CATEGORIES_API_URL, function (response) {
 })
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns JSON structured like this:上面的命令会返回以下的json结构：
 
 ```json
 {
@@ -113,21 +119,29 @@ $.getJSON(AVGLE_CATEGORIES_API_URL, function (response) {
 
 This endpoint retrieves all the video categories.
 
+这个接口获取所有视频类别
+
 ### HTTP Request
 
 `GET https://api.avgle.com/v1/categories`
 
 <aside class="success">
 You can include CHID as a query parameter in search videos API or list videos API to filter results.
+你可以在搜索视频API或者罗列视频API加入CHID查询参数用于筛选数据。
 </aside>
 
-# Video collections
+
+# Video collections 视频集
 
 A video collection denotes a series of videos. All the videos in a series include the `keyword` specified.
 
 In other words, they are recommended searches.
 
-## Get all video collections
+一个视频集代表一系列视频。所有系列视频包含keyword关键字。
+
+简而言之，他们推荐用于搜索。
+
+## Get all video collections 获取所有视频集
 
 ```php
 $AVGLE_LIST_COLLECTIONS_API_URL = 'https://api.avgle.com/v1/collections/';
@@ -223,37 +237,39 @@ This endpoint retrieves all the video collections.
 
 `GET https://api.avgle.com/v1/collections/<page>`
 
-### URL Parameters
+### URL Parameters URL参数
 
 Parameter | Description | Possible values
 --------- | ----------- | ---------------
-page | 0 based pagination | [0, +inf)
+page | 0 based pagination 页数 | [0, +inf)
 
-### Query Parameters
+### Query Parameters 查询参数
 
-Parameter | Default | Description | Possible values
+Parameter 参数 | Default默认 | Description 描述 | Possible values 数值范围 
 --------- | ------- | ----------- | ---------------
-limit | 50 | The maximum number of video collections in the API response per page. | [1, 250]
+limit | 50 | The maximum number of video collections in the API response per page.每页的视频集数最大值 | [1, 250]
 
-### Response
+### Response 返回值
 
-Key | Description
+Key 键 | Description 描述 
 --- | -----------
-has_more | `true` means there is next page. `false` otherwise.
-total_collections | The number of video collections.
-current_offset | The number of video collections skipped by pagination.
+has_more | `true` means there is next page. `false` otherwise. true代表有下一页，flase相反 
+total_collections | The number of video collections.总视频集数 
+current_offset | The number of video collections skipped by pagination.分页视频集数 
 limit | The maximum number of video collections the API response per page will include.
-collection > keyword | The keyword of the collection which is used as search query.
-collection > total_views | The total views of the videos in the video collection.
-collection > video_count | The number of videos in the video collection.
+collection > keyword | The keyword of the collection which is used as search query. 关键字 
+collection > total_views | The total views of the videos in the video collection. 总浏览数 
+collection > video_count | The number of videos in the video collection. 总视频数 
 
 <aside class="success">
 You can use keyword as the search query in search videos API to retrieve all related videos.
+
 </aside>
+
 
 # Videos
 
-## List all videos
+## List all videos 列出所有视频
 
 ```php
 $AVGLE_LIST_VIDEOS_API_URL = 'https://api.avgle.com/v1/videos/';
@@ -365,21 +381,21 @@ This endpoint retrieves all the videos in criteria.
 
 `GET https://api.avgle.com/v1/videos/<page>`
 
-### URL Parameters
+### URL Parameters URL参数
 
 Parameter | Description | Possible values
 --------- | ----------- | ---------------
-page | 0 based pagination | [0, +inf)
+page | 0 based pagination 分页 | [0, +inf)
 
 
-### Query Parameters
+### Query Parameters 查询参数
 
 Parameter | Default | Description | Possible values
 --------- | ------- | ----------- | ---------------
-o | mr | Videos ordering method. DESC order. For example, `mr` shows the latest videos in page 0. | bw (Last viewed)<br/>mr (Latest)<br/>mv (Most viewed)<br/>tr (Top rated)<br/>tf (Most favoured)<br/>lg (Longest)
-t | a | Time frame. Videos older than the specified age will not be showed. For example, `w` shows only the videos uploaded from 7 days ago to now. | t (1 day)<br/>w (1 week)<br/>m (1 month)<br/>a (Forever)
-type | (null) | Show only public or private videos, or show all videos if `type` not specified. | public<br/>private
-c | (null) | Show only videos within the specified video category. For example, `c`=1 shows only videos in 'Happy videos' categories. See [above](#video-categories). | CHID of a valid video category (integer)
+o | mr | Videos ordering method. DESC order. For example, `mr` shows the latest videos in page 0. 视频排序方法。降序。例如 mr 是在0页获取最新的视频 | bw (Last viewed)<br/>mr (Latest)<br/>mv (Most viewed)<br/>tr (Top rated)<br/>tf (Most favoured)<br/>lg (Longest)
+t | a | Time frame. Videos older than the specified age will not be showed. For example, `w` shows only the videos uploaded from 7 days ago to now.视频祯。视频早于特定时间的将不会展示。例如，w展示的是7天前到现在的。 | t (1 day)<br/>w (1 week)<br/>m (1 month)<br/>a (Forever)
+type | (null) | Show only public or private videos, or show all videos if `type` not specified. 展示公开的或者私有的视频。或者如果没有提供这个参数则显示所有的视频 | public<br/>private
+c | (null) | Show only videos within the specified video category. For example, `c`=1 shows only videos in 'Happy videos' categories. See [above](#video-categories). 显示指定类型的视频。例如，c=1显示的是“开心视频”类别。类型见上面👆。 | CHID of a valid video category (integer)
 limit | 50 | The maximum number of videos in the API response per page. | [1, 250]
 
 ### Response
